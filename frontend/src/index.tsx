@@ -7,11 +7,14 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import DashBoard from "./pages/Dashboard";
 import Classes from "./pages/Classes";
+import ErrorNotFoundPage from "./components/error";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="classes" element={<Classes />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="signin" element={<SignIn />} />
+      <Route path="*" element={<ErrorNotFoundPage />} />
     </Route>
   )
 );
@@ -30,6 +34,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
