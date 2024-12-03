@@ -15,10 +15,11 @@ import SignIn from "./pages/SignIn";
 import DashBoard from "./pages/Dashboard";
 import Classes from "./pages/Classes";
 import ErrorNotFoundPage from "./components/error";
+import MainLayout from "./mainLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
       <Route path="dashboard" element={<DashBoard />} />
       <Route path="classes" element={<Classes />} />

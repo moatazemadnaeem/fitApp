@@ -1,0 +1,33 @@
+.home {
+}
+.fullscreen-background {
+  position: relative;
+  height: calc(100vh - 80px);
+  background-image: url("../../assets/gymBg.avif");
+  background-size: cover;
+  background-position: center;
+}
+.centered-text {
+  width: 100%;
+  height: 100%;
+  color: var(--WT);
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.centered-text p {
+  max-width: 700px;
+}
+@media (max-width: 768px) {
+  .centered-text {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 400px) {
+  .centered-text {
+    font-size: 1rem;
+  }
+}
