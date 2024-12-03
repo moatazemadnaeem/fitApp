@@ -20,3 +20,12 @@ export interface UserRes extends mongoose.Document {
   email: string;
   password: string;
 }
+export interface FitRes extends mongoose.Document {
+  userId: mongoose.Types.ObjectId;
+  title: string;
+  description: string;
+  startDate: Date;
+  timePeriod: Date;
+  maxAttendees: number;
+  attendingUsers: mongoose.Types.ObjectId[];
+}

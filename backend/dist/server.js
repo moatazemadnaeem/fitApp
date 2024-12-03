@@ -41,10 +41,18 @@ const path_1 = require("path");
 const envPath = (0, path_1.resolve)("./src/.env");
 dotenv.config({ path: envPath });
 const app_1 = __importDefault(require("./app"));
+//Auth
 const createUser_1 = __importDefault(require("./routes/users/createUser"));
 const signInUser_1 = __importDefault(require("./routes/users/signInUser"));
 const currentUser_1 = __importDefault(require("./routes/users/currentUser"));
 const signoutUser_1 = __importDefault(require("./routes/users/signoutUser"));
+//Fitness
+const createFitClass_1 = __importDefault(require("./routes/fit_classes/createFitClass"));
+const getFitClasses_1 = __importDefault(require("./routes/fit_classes/getFitClasses"));
+const editFitClass_1 = __importDefault(require("./routes/fit_classes/editFitClass"));
+const deleteFitClass_1 = __importDefault(require("./routes/fit_classes/deleteFitClass"));
+const bookFitClass_1 = __importDefault(require("./routes/fit_classes/bookFitClass"));
+const cancelFitClass_1 = __importDefault(require("./routes/fit_classes/cancelFitClass"));
 new app_1.default([
     //Users
     new createUser_1.default(),
@@ -52,4 +60,10 @@ new app_1.default([
     new currentUser_1.default(),
     new signoutUser_1.default(),
     //fitness classes
+    new createFitClass_1.default(),
+    new getFitClasses_1.default(),
+    new editFitClass_1.default(),
+    new deleteFitClass_1.default(),
+    new bookFitClass_1.default(),
+    new cancelFitClass_1.default(),
 ], parseInt(process.env.PORT));
