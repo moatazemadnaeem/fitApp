@@ -1,10 +1,26 @@
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import { Link } from "react-router-dom";
 import "./signin.css";
 import { validateEmail, validatePassword } from "../../utils/validations";
+import { UserSignInInter } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../types";
+import { signInApi } from "../../api/users";
+import { useNavigate } from "react-router-dom";
+
 const SignIn = () => {
-  const handleSignInApi = async (values: any) => {
-    console.log(values);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const loading = useSelector<RootState>(
+    (state) => state.user.loading
+  ) as boolean;
+  const handleSignInApi = async (values: UserSignInInter) => {
+    try {
+      await signInApi(values, dispatch);
+      navigate("/");
+    } catch (error: any) {
+      message.error(error);
+    }
   };
   return (
     <div className="container-form">
@@ -44,7 +60,7 @@ const SignIn = () => {
           <Link to="/signup">SignUp</Link>
         </Form.Item>
         <Form.Item className="button">
-          <Button type="primary" htmlType="submit">
+          <Button loading={loading} type="primary" htmlType="submit">
             Sign In
           </Button>
         </Form.Item>

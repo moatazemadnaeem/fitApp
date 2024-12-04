@@ -16,17 +16,11 @@ export const signInApi = async (
     throw error;
   }
 };
-export const signUpUserApi = async (
-  reqBody: UserSignUpInter,
-  dispatch: AppDispatch
-) => {
+export const signUpUserApi = async (reqBody: UserSignUpInter) => {
   try {
-    dispatch(userActions.req_user());
     const data = await signUpUser(reqBody);
-    dispatch(userActions.signup_user(data));
     return data;
   } catch (error: any) {
-    dispatch(userActions.fail_signup_user(error));
     throw error;
   }
 };
