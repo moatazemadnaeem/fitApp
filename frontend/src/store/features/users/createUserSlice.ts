@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { userResInter, userInter } from "../../../types";
+import { userResInter, userInter, UserCurrInter } from "../../../types";
 
 const initialState: userInter = {
   user: null,
@@ -21,6 +21,12 @@ const userSlice = createSlice({
       state.user = { name: action.payload.name, email: action.payload.email };
       state.status = action.payload.status;
       state.token = action.payload.token;
+      sessionStorage.setItem("jwt", action.payload.token!);
+    },
+    curr_user: (state, action: PayloadAction<UserCurrInter>) => {
+      state.loading = false;
+      state.user = { name: action.payload.name, email: action.payload.email };
+      state.status = action.payload.status;
     },
     fail_signin_user: (state, action: PayloadAction<{ msg: string }>) => {
       state.loading = false;
@@ -32,4 +38,5 @@ const userSlice = createSlice({
   },
 });
 export default userSlice.reducer;
-export const { req_user, signin_user, fail_signin_user } = userSlice.actions;
+export const { req_user, signin_user, fail_signin_user, curr_user } =
+  userSlice.actions;

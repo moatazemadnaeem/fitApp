@@ -11,7 +11,7 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 // Fitness Classes types
-export interface fitClass {
+export interface fitClassBase {
   title: string;
   description: string;
   maxAttendees: number;
@@ -19,7 +19,12 @@ export interface fitClass {
   attendingUsers: number;
   date: string;
 }
-
+export interface fitClassInter {
+  classes: fitClassBase[] | [];
+  loading: boolean;
+  status: boolAndNull;
+  error: string;
+}
 // User Types
 
 type userBase = {
@@ -50,4 +55,10 @@ export interface UserSignUpInter {
   name: string;
   email: string;
   password: string;
+}
+
+export interface UserCurrInter {
+  name: string;
+  email: string;
+  status: boolAndNull;
 }

@@ -2,12 +2,14 @@ import "./navbar.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import LinksNav from "./linksNav";
 function NavBar() {
   const [navOpen, setNavOpen] = useState(false);
 
   const toggleNav = () => {
     setNavOpen(!navOpen);
   };
+
   return (
     <nav className="nav">
       {/* Brand */}
@@ -21,12 +23,7 @@ function NavBar() {
       {/* SignIn */}
       {/* SignUp */}
       <ul className={`navlinks ${navOpen ? "show" : ""}`}>
-        <li className="nlink">
-          <Link to="/signin"> Sign In</Link>
-        </li>
-        <li className="nlink">
-          <Link to="/signup"> Sign Up</Link>
-        </li>
+        <LinksNav />
       </ul>
       {/* Menu Icon */}
       <div className="nav-menu-icon" onClick={toggleNav}>

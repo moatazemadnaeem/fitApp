@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { fitClass } from "../../types";
+import { fitClassBase } from "../../types";
 import fitImg from "../../assets/fitImg.png";
 import "./classes.css";
 import { Collapse } from "antd";
@@ -16,7 +16,7 @@ const items: CollapseProps["items"] = [
     children: <p>{text}</p>,
   },
 ];
-const ClassCard: React.FC<fitClass> = ({ title, description }) => {
+const ClassCard: React.FC<fitClassBase> = ({ title, description }) => {
   return (
     <div className="class-card">
       <img src={fitImg} alt="" />
