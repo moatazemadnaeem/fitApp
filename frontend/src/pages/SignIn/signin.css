@@ -1,0 +1,40 @@
+.container-form {
+  height: calc(100vh - 80px);
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--WT);
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  background-color: var(--lightDark);
+}
+.signin .ant-form-item-label label {
+  color: var(--WT);
+  font-weight: bold;
+}
+.signin .name,
+.email,
+.password,
+.button,
+.link {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 0.5rem;
+}
+.signin button {
+  font-weight: bold;
+  width: 100%;
+}
+.link a {
+  color: var(--mainColor);
+  font-weight: bold;
+}
+.link span {
+  color: var(--WT);
+  font-weight: bold;
+}

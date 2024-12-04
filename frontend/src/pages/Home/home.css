@@ -3,7 +3,7 @@
 .fullscreen-background {
   position: relative;
   height: calc(100vh - 80px);
-  background-image: url("../../assets/gymBg.avif");
+  background-image: url("../../assets/gymBg.jpg");
   background-size: cover;
   background-position: center;
 }
