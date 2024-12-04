@@ -1,0 +1,33 @@
+.class-card {
+  border: 1px solid var(--mainColor);
+  padding: 1rem;
+  display: flex;
+  max-width: 90%;
+  margin: 1rem auto;
+}
+.class-card img {
+  max-width: 100px;
+  max-height: 100px;
+}
+.class-card-content {
+  margin-left: 1rem;
+}
+.class-card-content h3 {
+  margin-bottom: 0.5rem;
+}
+.class-card-content p {
+  margin-bottom: 0.5rem;
+}
+.class-card-content .ant-collapse-header {
+  padding: 0px !important;
+  color: var(--mainColor) !important;
+}
+@media (max-width: 540px) {
+  .class-card {
+    flex-direction: column;
+  }
+  .class-card-content {
+    margin-left: 0px;
+    margin-top: 0.5rem;
+  }
+}
