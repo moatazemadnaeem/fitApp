@@ -25,6 +25,7 @@ export interface fitClassInter {
   loading: boolean;
   status: boolAndNull;
   error: string;
+  loadingDash: boolean;
 }
 export interface fitClassReadInter {
   fitclasses: fitClassBase[] | [];
@@ -40,6 +41,14 @@ export interface BookResInter {
   classBooked: fitClassBase;
 }
 export type Page = number;
+
+export enum Pages {
+  HOME = "HOME",
+  DASHBOARD = "DASHBOARD",
+  CLASSES = "CLASSES",
+}
+
+export type PageType = Pages;
 // User Types
 
 type userBase = {

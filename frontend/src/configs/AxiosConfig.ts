@@ -15,6 +15,7 @@ const protectedUrls = [
   "fitclasses/delete_class",
   "fitclasses/book_class",
   "fitclasses/cancel_class",
+  "fitclasses/get_booked_classes",
 ];
 AxiosInstance.interceptors.request.use(
   (config) => {

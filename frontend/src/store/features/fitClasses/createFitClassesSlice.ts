@@ -6,6 +6,7 @@ const initialState: fitClassInter = {
   loading: false,
   error: "",
   status: false,
+  loadingDash: false,
 };
 
 const classesSlice = createSlice({
@@ -15,20 +16,25 @@ const classesSlice = createSlice({
     req_classes: (state) => {
       state.loading = true;
     },
+    loading_dash: (state) => {
+      state.loadingDash = true;
+    },
     get_classes: (state, action: PayloadAction<fitClassBase[]>) => {
       state.loading = false;
       state.classes = action.payload;
       state.status = true;
       state.error = "";
+      state.loadingDash = false;
     },
     fail_get_classes: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.classes = [];
       state.status = false;
       state.error = action.payload;
+      state.loadingDash = false;
     },
   },
 });
 export default classesSlice.reducer;
-export const { req_classes, get_classes, fail_get_classes } =
+export const { req_classes, get_classes, fail_get_classes, loading_dash } =
   classesSlice.actions;

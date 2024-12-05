@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { fitClassBase, userInter } from "../../types";
 import { formateStrToDate } from "../../utils/formateStrToDate";
 import { Button, message } from "antd";
-import { useSelector, UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../types";
 import { bookClassApi } from "../../api/fitClasses";
 const ReadMore: React.FC<fitClassBase> = ({

@@ -32,3 +32,18 @@ export const bookClass = async (reqBody: BodyIdInter) => {
     );
   }
 };
+export const getBookedClasses = async (page: Page) => {
+  try {
+    const { data } = await AxiosInstance.post<fitClassReadInter>(
+      `fitclasses/get_booked_classes`,
+      {
+        page,
+      }
+    );
+    return data;
+  } catch (error: any) {
+    throw (
+      error?.response?.data[0]?.msg || "Something went wrong please try again."
+    );
+  }
+};

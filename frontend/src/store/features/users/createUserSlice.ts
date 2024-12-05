@@ -32,11 +32,11 @@ const userSlice = createSlice({
       state.user = { name: action.payload.name, email: action.payload.email };
       state.status = action.payload.status;
     },
-    fail_signin_user: (state, action: PayloadAction<{ msg: string }>) => {
+    fail_signin_user: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.user = null;
       state.token = null;
-      state.error = action.payload.msg;
+      state.error = action.payload;
       state.status = false;
       state.currLoading = false;
     },

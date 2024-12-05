@@ -17,14 +17,16 @@ import Classes from "./pages/Classes";
 import Profile from "./pages/Profile";
 import ErrorNotFoundPage from "./components/error";
 import MainLayout from "./mainLayout";
-
+import ProtectRoute from "./protectRoute";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
-      <Route path="dashboard" element={<DashBoard />} />
-      <Route path="classes" element={<Classes />} />
-      <Route path="profile" element={<Profile />} />
+      <Route element={<ProtectRoute />}>
+        <Route path="dashboard" element={<DashBoard />} />
+        <Route path="classes" element={<Classes />} />
+        <Route path="profile" element={<Profile />} />
+      </Route>
       <Route path="signup" element={<SignUp />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="*" element={<ErrorNotFoundPage />} />

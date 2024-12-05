@@ -1,13 +1,8 @@
 import "./home.css";
 import lineImg from "../../assets/line.png";
-import ClassesList from "../../components/classes";
-import { useReadFitClasses } from "../../hooks/useReadFitClasses";
-import { Button } from "antd";
-import { useState } from "react";
+import Classes from "../../components/classes";
+import { Pages } from "../../types";
 function Home() {
-  const [page, setPage] = useState<number>(1);
-  const { classes, loading } = useReadFitClasses(page);
-
   return (
     <div className="home">
       {/* Welcome section */}
@@ -31,26 +26,7 @@ function Home() {
             your preferred sessions, and start your fitness journey today.
           </p>
         </div>
-        {/* classes cards + load more button */}
-        {classes.length < 1 ? (
-          <span className="no-classes">
-            There Are No Classes For Now Please Come Soon!
-          </span>
-        ) : (
-          <>
-            <ClassesList classes={classes} />
-            <Button
-              className="btn-orange"
-              onClick={() => {
-                setPage((prev) => prev + 1);
-              }}
-              loading={loading}
-              type="primary"
-            >
-              Load More
-            </Button>
-          </>
-        )}
+        <Classes type={Pages.HOME} />
       </div>
     </div>
   );

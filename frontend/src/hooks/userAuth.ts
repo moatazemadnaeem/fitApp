@@ -10,7 +10,7 @@ import { userInter, UserCurrInter, RootState } from "../types/index";
 
 export function useAuth() {
   const dispatch = useDispatch();
-  const { user, currLoading, error } = useSelector<RootState>(
+  const { user, currLoading, loading, error } = useSelector<RootState>(
     (state) => state.user
   ) as userInter;
   useEffect(() => {
@@ -35,5 +35,5 @@ export function useAuth() {
     getCurrentUser();
   }, []);
 
-  return { user, currLoading, error };
+  return { user, currLoading, loading, error };
 }
