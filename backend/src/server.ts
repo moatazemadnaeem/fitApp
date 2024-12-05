@@ -15,6 +15,7 @@ import EditFitClass from "./routes/fit_classes/editFitClass";
 import DeleteFitClass from "./routes/fit_classes/deleteFitClass";
 import BookFitClass from "./routes/fit_classes/bookFitClass";
 import CancelFitClass from "./routes/fit_classes/cancelFitClass";
+import GetBookedFitClasses from "./routes/fit_classes/getBookedFitClasses";
 new App(
   [
     //Users
@@ -29,6 +30,7 @@ new App(
     new DeleteFitClass(),
     new BookFitClass(),
     new CancelFitClass(),
+    new GetBookedFitClasses(),
   ],
   parseInt(process.env.PORT!)
 );

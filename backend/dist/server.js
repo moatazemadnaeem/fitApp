@@ -53,6 +53,7 @@ const editFitClass_1 = __importDefault(require("./routes/fit_classes/editFitClas
 const deleteFitClass_1 = __importDefault(require("./routes/fit_classes/deleteFitClass"));
 const bookFitClass_1 = __importDefault(require("./routes/fit_classes/bookFitClass"));
 const cancelFitClass_1 = __importDefault(require("./routes/fit_classes/cancelFitClass"));
+const getBookedFitClasses_1 = __importDefault(require("./routes/fit_classes/getBookedFitClasses"));
 new app_1.default([
     //Users
     new createUser_1.default(),
@@ -66,4 +67,5 @@ new app_1.default([
     new deleteFitClass_1.default(),
     new bookFitClass_1.default(),
     new cancelFitClass_1.default(),
+    new getBookedFitClasses_1.default(),
 ], parseInt(process.env.PORT));

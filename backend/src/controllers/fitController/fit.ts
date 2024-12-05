@@ -162,6 +162,24 @@ class FitController {
       throw new BadReqErr(error.message);
     }
   }
+  public async get_booked_classes(req: currRequest, res: Response) {
+    try {
+      const page = req.body.page || 1;
+      const id = req.currentUser?.id;
+      const limit = page * 10;
+      const fitclasses = await FitClasses.find({
+        timePeriod: { $gte: Date.now() },
+        attendingUsers: { $in: [id] },
+      }).limit(limit);
+      res.send({
+        msg: "Done sending all booked fitness classes",
+        fitclasses,
+        status: true,
+      });
+    } catch (error: any) {
+      throw new BadReqErr(error.message);
+    }
+  }
 }
 
 export const fitController = new FitController();

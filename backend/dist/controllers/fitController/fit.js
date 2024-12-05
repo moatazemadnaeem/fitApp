@@ -180,5 +180,27 @@ class FitController {
             }
         });
     }
+    get_booked_classes(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            try {
+                const page = req.body.page || 1;
+                const id = (_a = req.currentUser) === null || _a === void 0 ? void 0 : _a.id;
+                const limit = page * 10;
+                const fitclasses = yield fitnessModel_1.default.find({
+                    timePeriod: { $gte: Date.now() },
+                    attendingUsers: { $in: [id] },
+                }).limit(limit);
+                res.send({
+                    msg: "Done sending all booked fitness classes",
+                    fitclasses,
+                    status: true,
+                });
+            }
+            catch (error) {
+                throw new badReqError_1.BadReqErr(error.message);
+            }
+        });
+    }
 }
 exports.fitController = new FitController();
