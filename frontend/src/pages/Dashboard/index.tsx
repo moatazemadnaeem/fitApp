@@ -12,8 +12,8 @@ function DashBoard() {
           <img src={lineImg} alt="" />
           <p>
             View the list of classes that you booked and if you want to cancel a
-            class feel free to that but we encourage you complete the classes to
-            get the most benefit from it.
+            class feel free to do that but we encourage you complete the classes
+            to get the most benefit from it.
           </p>
         </div>
         <Classes type={Pages.DASHBOARD} />

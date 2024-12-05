@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { fitClassBase, userInter } from "../../types";
+import { fitClassBase, userInter, PagesPaths } from "../../types";
 import { formateStrToDate } from "../../utils/formateStrToDate";
 import { Button, message } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "../../types";
-import { bookClassApi } from "../../api/fitClasses";
+import { bookClassApi, cancelClassApi } from "../../api/fitClasses";
+import { useLocation } from "react-router-dom";
+
 const ReadMore: React.FC<fitClassBase> = ({
   maxAttendees,
   attendingUsers,
@@ -13,7 +15,11 @@ const ReadMore: React.FC<fitClassBase> = ({
   _id,
 }) => {
   const { user } = useSelector<RootState>((state) => state.user) as userInter;
+  const location = useLocation();
+  const path = location.pathname;
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingCancel, setLoadingCancel] = useState<boolean>(false);
+
   const handleBookClassApi = async (id: string) => {
     try {
       setLoading(true);
@@ -27,21 +33,51 @@ const ReadMore: React.FC<fitClassBase> = ({
       setLoading(false);
     }
   };
+  const handleCancelClassApi = async (id: string) => {
+    try {
+      setLoadingCancel(true);
+      const data = await cancelClassApi(id);
+      if (data.status) {
+        message.success(data.msg);
+      }
+    } catch (error: any) {
+      message.error(error);
+    } finally {
+      setLoadingCancel(false);
+    }
+  };
+  const handleButtonFitClass = () => {
+    if (user) {
+      if (path === PagesPaths.HOMEPATH) {
+        return (
+          <Button
+            loading={loading}
+            onClick={() => handleBookClassApi(_id)}
+            className="btn-read btn-orange"
+            type="primary"
+          >
+            Book
+          </Button>
+        );
+      }
+      if (path === PagesPaths.DASHBOARDPATH) {
+        return (
+          <Button
+            onClick={() => handleCancelClassApi(_id)}
+            loading={loadingCancel}
+            className="btn-read btn-orange"
+            type="primary"
+          >
+            Cancel
+          </Button>
+        );
+      }
+    }
+    return <span className="read-content">Sign In To Book</span>;
+  };
   return (
     <div className="read-container">
-      {user ? (
-        <Button
-          loading={loading}
-          onClick={() => handleBookClassApi(_id)}
-          className="btn-read btn-orange"
-          type="primary"
-        >
-          Book
-        </Button>
-      ) : (
-        <span className="read-content">Sign In To Book</span>
-      )}
-
+      {handleButtonFitClass()}
       <div className="read-content read-attending">
         {maxAttendees === attendingUsers.length ? (
           <span>Class Is Full</span>

@@ -1,6 +1,8 @@
 import NavBar from "./components/navbar";
 import { Outlet } from "react-router-dom";
+import { useAuth } from "./hooks/userAuth";
 function MainLayout() {
+  const data = useAuth();
   return (
     <>
       <NavBar />

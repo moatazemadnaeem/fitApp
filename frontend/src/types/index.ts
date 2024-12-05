@@ -40,6 +40,11 @@ export interface BookResInter {
   status: boolean;
   classBooked: fitClassBase;
 }
+export interface CancelClassResInter {
+  msg: string;
+  status: boolean;
+  classCanceled: fitClassBase;
+}
 export type Page = number;
 
 export enum Pages {
@@ -47,7 +52,11 @@ export enum Pages {
   DASHBOARD = "DASHBOARD",
   CLASSES = "CLASSES",
 }
-
+export enum PagesPaths {
+  HOMEPATH = "/",
+  DASHBOARDPATH = "/dashboard",
+  CLASSESPATH = "/classes",
+}
 export type PageType = Pages;
 // User Types
 

@@ -4,6 +4,7 @@ import {
   readClasses,
   bookClass,
   getBookedClasses,
+  cancelClass,
 } from "../services/fitClasses";
 export const readClassesApi = async (reqBody: Page, dispatch: AppDispatch) => {
   try {
@@ -17,7 +18,15 @@ export const readClassesApi = async (reqBody: Page, dispatch: AppDispatch) => {
 };
 export const bookClassApi = async (classId: string) => {
   try {
-    const data = await bookClass({ classId });
+    const data = await bookClass(classId);
+    return data;
+  } catch (error: any) {
+    throw error;
+  }
+};
+export const cancelClassApi = async (classId: string) => {
+  try {
+    const data = await cancelClass(classId);
     return data;
   } catch (error: any) {
     throw error;
