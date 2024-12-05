@@ -62,6 +62,7 @@ export type PageType = Pages;
 export interface modalInter {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
+  record: fitClassBase;
 }
 // User Types
 

@@ -18,6 +18,8 @@ import Profile from "./pages/Profile";
 import ErrorNotFoundPage from "./components/error";
 import MainLayout from "./mainLayout";
 import ProtectRoute from "./protectRoute";
+import "./configs/DayConfig";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>

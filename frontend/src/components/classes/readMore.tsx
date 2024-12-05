@@ -13,6 +13,8 @@ const ReadMore: React.FC<fitClassBase> = ({
   startDate,
   timePeriod,
   _id,
+  description,
+  title,
 }) => {
   const { user } = useSelector<RootState>((state) => state.user) as userInter;
   const location = useLocation();
@@ -116,6 +118,15 @@ const ReadMore: React.FC<fitClassBase> = ({
       <EditClassModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        record={{
+          maxAttendees,
+          startDate,
+          timePeriod,
+          description,
+          _id,
+          attendingUsers,
+          title,
+        }}
       />
     </div>
   );

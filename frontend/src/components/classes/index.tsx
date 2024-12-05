@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Pages, PageType } from "../../types";
 import { Button } from "antd";
 import { useReadFitClasses } from "../../hooks/useReadFitClasses";
-const Classes: React.FC<{ type: PageType }> = ({ type }) => {
+const FitClasses: React.FC<{ type: PageType }> = ({ type }) => {
   const [page, setPage] = useState<number>(1);
   const { classes, loadingDash, status, error, loading, loadingClass } =
     useReadFitClasses(page, type);
@@ -60,4 +60,4 @@ const Classes: React.FC<{ type: PageType }> = ({ type }) => {
   return <span className="no-classes no-classes-error">{error}</span>;
 };
 
-export default Classes;
+export default FitClasses;
