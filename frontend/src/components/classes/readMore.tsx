@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../types";
 import { bookClassApi, cancelClassApi } from "../../api/fitClasses";
 import { useLocation } from "react-router-dom";
-
+import EditClassModal from "./editClassModal";
 const ReadMore: React.FC<fitClassBase> = ({
   maxAttendees,
   attendingUsers,
@@ -19,6 +19,10 @@ const ReadMore: React.FC<fitClassBase> = ({
   const path = location.pathname;
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingCancel, setLoadingCancel] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
   const handleBookClassApi = async (id: string) => {
     try {
@@ -72,6 +76,17 @@ const ReadMore: React.FC<fitClassBase> = ({
           </Button>
         );
       }
+      if (path === PagesPaths.CLASSESPATH) {
+        return (
+          <Button
+            onClick={showModal}
+            className="btn-read btn-orange"
+            type="primary"
+          >
+            Edit
+          </Button>
+        );
+      }
     }
     return <span className="read-content">Sign In To Book</span>;
   };
@@ -98,6 +113,10 @@ const ReadMore: React.FC<fitClassBase> = ({
         <span>Class Ends In </span>
         <span>{formateStrToDate(timePeriod)}</span>
       </div>
+      <EditClassModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
     </div>
   );
 };

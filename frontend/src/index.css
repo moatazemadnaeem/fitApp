@@ -42,3 +42,19 @@ code {
   border-color: var(--mainColor) !important;
   color: var(--mainColor) !important;
 }
+.classes-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.classes-content {
+  max-width: 90%;
+  text-align: center;
+  margin-top: 1rem;
+}
+.classes-content p {
+  max-width: 700px;
+}
+.classes-content h3 {
+  font-size: 2rem;
+}

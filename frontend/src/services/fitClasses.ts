@@ -67,3 +67,18 @@ export const getBookedClasses = async (page: Page) => {
     );
   }
 };
+export const getCreatedClasses = async (page: Page) => {
+  try {
+    const { data } = await AxiosInstance.post<fitClassReadInter>(
+      `fitclasses/get_created_classes`,
+      {
+        page,
+      }
+    );
+    return data;
+  } catch (error: any) {
+    throw (
+      error?.response?.data[0]?.msg || "Something went wrong please try again."
+    );
+  }
+};

@@ -26,6 +26,7 @@ export interface fitClassInter {
   status: boolAndNull;
   error: string;
   loadingDash: boolean;
+  loadingClass: boolean;
 }
 export interface fitClassReadInter {
   fitclasses: fitClassBase[] | [];
@@ -58,6 +59,10 @@ export enum PagesPaths {
   CLASSESPATH = "/classes",
 }
 export type PageType = Pages;
+export interface modalInter {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalOpen: boolean;
+}
 // User Types
 
 type userBase = {

@@ -5,6 +5,7 @@ import {
   bookClass,
   getBookedClasses,
   cancelClass,
+  getCreatedClasses,
 } from "../services/fitClasses";
 export const readClassesApi = async (reqBody: Page, dispatch: AppDispatch) => {
   try {
@@ -39,6 +40,19 @@ export const readBookedClassesApi = async (
   try {
     dispatch(fitClassesActions.loading_dash());
     const data = await getBookedClasses(reqBody);
+    dispatch(fitClassesActions.get_classes(data.fitclasses));
+    return data;
+  } catch (error: any) {
+    dispatch(fitClassesActions.fail_get_classes(error));
+  }
+};
+export const getCreatedClassesApi = async (
+  reqBody: Page,
+  dispatch: AppDispatch
+) => {
+  try {
+    dispatch(fitClassesActions.loading_class());
+    const data = await getCreatedClasses(reqBody);
     dispatch(fitClassesActions.get_classes(data.fitclasses));
     return data;
   } catch (error: any) {
