@@ -7,6 +7,7 @@ import { useState } from "react";
 function Home() {
   const [page, setPage] = useState<number>(1);
   const { classes, loading } = useReadFitClasses(page);
+
   return (
     <div className="home">
       {/* Welcome section */}

@@ -7,6 +7,7 @@ const initialState: userInter = {
   error: "",
   status: false,
   token: null,
+  currLoading: false,
 };
 
 const userSlice = createSlice({
@@ -16,6 +17,9 @@ const userSlice = createSlice({
     req_user: (state) => {
       state.loading = true;
     },
+    curr_user_loading: (state) => {
+      state.currLoading = true;
+    },
     signin_user: (state, action: PayloadAction<userResInter>) => {
       state.loading = false;
       state.user = { name: action.payload.name, email: action.payload.email };
@@ -24,7 +28,7 @@ const userSlice = createSlice({
       sessionStorage.setItem("jwt", action.payload.token!);
     },
     curr_user: (state, action: PayloadAction<UserCurrInter>) => {
-      state.loading = false;
+      state.currLoading = false;
       state.user = { name: action.payload.name, email: action.payload.email };
       state.status = action.payload.status;
     },
@@ -34,9 +38,15 @@ const userSlice = createSlice({
       state.token = null;
       state.error = action.payload.msg;
       state.status = false;
+      state.currLoading = false;
     },
   },
 });
 export default userSlice.reducer;
-export const { req_user, signin_user, fail_signin_user, curr_user } =
-  userSlice.actions;
+export const {
+  req_user,
+  signin_user,
+  fail_signin_user,
+  curr_user,
+  curr_user_loading,
+} = userSlice.actions;

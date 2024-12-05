@@ -15,8 +15,6 @@ const ReadMore: React.FC<fitClassBase> = ({
 
   return (
     <div className="read-container">
-      {/* if not auth user will see text saying sign in to book the class */}
-      {/* if auth user can see book button */}
       {user ? (
         <Button className="btn-read btn-orange" type="primary">
           Book
@@ -25,7 +23,6 @@ const ReadMore: React.FC<fitClassBase> = ({
         <span className="read-content">Sign In To Book</span>
       )}
 
-      {/* show how many users in the class and if its full say that besides the total number of people */}
       <div className="read-content read-attending">
         {maxAttendees === attendingUsers.length ? (
           <span>Class Is Full</span>
@@ -38,12 +35,10 @@ const ReadMore: React.FC<fitClassBase> = ({
           </>
         )}
       </div>
-      {/* show when the class starts */}
       <div className="read-content class-start">
         <span>Class Starts In </span>
         <span>{formateStrToDate(startDate)}</span>
       </div>
-      {/* show when the class ends*/}
       <div className="read-content class-ends">
         <span>Class Ends In </span>
         <span>{formateStrToDate(timePeriod)}</span>

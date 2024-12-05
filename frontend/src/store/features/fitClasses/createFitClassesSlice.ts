@@ -21,11 +21,11 @@ const classesSlice = createSlice({
       state.status = true;
       state.error = "";
     },
-    fail_get_classes: (state, action: PayloadAction<{ msg: string }>) => {
+    fail_get_classes: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.classes = [];
       state.status = false;
-      state.error = action.payload.msg;
+      state.error = action.payload;
     },
   },
 });

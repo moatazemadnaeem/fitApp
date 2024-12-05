@@ -10,6 +10,7 @@ import { signUpUserApi } from "../../api/users";
 import { UserSignUpInter } from "../../types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const SignUp = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();

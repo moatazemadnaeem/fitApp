@@ -16,3 +16,12 @@ export const readClasses = async (page: Page) => {
     );
   }
 };
+
+export const bookClass = async () => {
+  try {
+  } catch (error: any) {
+    throw (
+      error?.response?.data[0]?.msg || "Something went wrong please try again."
+    );
+  }
+};

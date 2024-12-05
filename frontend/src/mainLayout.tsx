@@ -4,8 +4,8 @@ import { useAuth } from "./hooks/userAuth";
 import { Spin } from "antd";
 
 function MainLayout() {
-  const { loading } = useAuth();
-  if (loading) {
+  const { currLoading } = useAuth();
+  if (currLoading) {
     return (
       <div className="glob-spin">
         <Spin size="large" />

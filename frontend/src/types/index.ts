@@ -45,6 +45,7 @@ export interface userInter {
   status: boolAndNull;
   loading: boolean;
   error: string;
+  currLoading: boolean;
 }
 export interface userResInter {
   name: string;

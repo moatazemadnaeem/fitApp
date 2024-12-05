@@ -9,6 +9,5 @@ export const readClassesApi = async (reqBody: Page, dispatch: AppDispatch) => {
     return data;
   } catch (error: any) {
     dispatch(fitClassesActions.fail_get_classes(error));
-    throw error;
   }
 };

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { AxiosInstance } from "../configs/AxiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  req_user,
+  curr_user_loading,
   curr_user,
   fail_signin_user,
 } from "../store/features/users/createUserSlice";
@@ -10,13 +10,13 @@ import { userInter, UserCurrInter, RootState } from "../types/index";
 
 export function useAuth() {
   const dispatch = useDispatch();
-  const { user, loading, error } = useSelector<RootState>(
+  const { user, currLoading, error } = useSelector<RootState>(
     (state) => state.user
   ) as userInter;
   useEffect(() => {
     const getCurrentUser = async () => {
       try {
-        dispatch(req_user());
+        dispatch(curr_user_loading());
         const { data } = await AxiosInstance.get<UserCurrInter>(
           "users/current_user"
         );
@@ -35,5 +35,5 @@ export function useAuth() {
     getCurrentUser();
   }, []);
 
-  return { user, loading, error };
+  return { user, currLoading, error };
 }
