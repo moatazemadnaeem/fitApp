@@ -1,5 +1,5 @@
 import { AxiosInstance } from "../configs/AxiosConfig";
-import { fitClassReadInter } from "../types/index";
+import { BodyIdInter, fitClassReadInter, BookResInter } from "../types/index";
 import { Page } from "../types/index";
 export const readClasses = async (page: Page) => {
   try {
@@ -17,8 +17,15 @@ export const readClasses = async (page: Page) => {
   }
 };
 
-export const bookClass = async () => {
+export const bookClass = async (reqBody: BodyIdInter) => {
   try {
+    const { data } = await AxiosInstance.post<BookResInter>(
+      `fitclasses/book_class`,
+      {
+        ...reqBody,
+      }
+    );
+    return data;
   } catch (error: any) {
     throw (
       error?.response?.data[0]?.msg || "Something went wrong please try again."

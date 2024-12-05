@@ -31,6 +31,14 @@ export interface fitClassReadInter {
   msg: string;
   status: boolean;
 }
+export interface BodyIdInter {
+  classId: string;
+}
+export interface BookResInter {
+  msg: string;
+  status: boolean;
+  classBooked: fitClassBase;
+}
 export type Page = number;
 // User Types
 

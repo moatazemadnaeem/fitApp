@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { fitClassBase, userInter } from "../../types";
 import { formateStrToDate } from "../../utils/formateStrToDate";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { useSelector, UseSelector } from "react-redux";
 import { RootState } from "../../types";
+import { bookClassApi } from "../../api/fitClasses";
 const ReadMore: React.FC<fitClassBase> = ({
   maxAttendees,
   attendingUsers,
@@ -12,11 +13,29 @@ const ReadMore: React.FC<fitClassBase> = ({
   _id,
 }) => {
   const { user } = useSelector<RootState>((state) => state.user) as userInter;
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const handleBookClassApi = async (id: string) => {
+    try {
+      setLoading(true);
+      const data = await bookClassApi(id);
+      if (data.status) {
+        message.success(data.msg);
+      }
+    } catch (error: any) {
+      message.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="read-container">
       {user ? (
-        <Button className="btn-read btn-orange" type="primary">
+        <Button
+          loading={loading}
+          onClick={() => handleBookClassApi(_id)}
+          className="btn-read btn-orange"
+          type="primary"
+        >
           Book
         </Button>
       ) : (
