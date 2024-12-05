@@ -17,7 +17,7 @@ const classesSlice = createSlice({
     },
     get_classes: (state, action: PayloadAction<fitClassBase[]>) => {
       state.loading = false;
-      state.classes = [...state.classes, ...action.payload];
+      state.classes = action.payload;
       state.status = true;
       state.error = "";
     },

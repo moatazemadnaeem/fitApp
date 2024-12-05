@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { fitClassBase } from "../../types";
 import fitImg from "../../assets/fitImg.png";
 import "./classes.css";
@@ -12,7 +12,7 @@ const text = `
 const items: CollapseProps["items"] = [
   {
     key: "1",
-    label: "Discover More",
+    label: "Read More",
     children: <p>{text}</p>,
   },
 ];

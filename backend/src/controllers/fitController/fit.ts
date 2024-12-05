@@ -29,13 +29,10 @@ class FitController {
   public async read_classes(req: currRequest, res: Response) {
     try {
       const page = req.body.page || 1;
-      const limit = 10;
-      const skip = (page - 1) * limit;
+      const limit = page * 10;
       const fitclasses = await FitClasses.find({
         startDate: { $gte: Date.now() },
-      })
-        .skip(skip)
-        .limit(limit);
+      }).limit(limit);
       res.send({
         msg: "Done sending all fitness classes",
         fitclasses,

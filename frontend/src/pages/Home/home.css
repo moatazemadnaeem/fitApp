@@ -38,6 +38,16 @@
   font-size: 2rem;
 }
 
+.no-classes {
+  background-color: var(--mainColor);
+  color: var(--WT);
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  max-width: 90%;
+  text-align: center;
+}
 @media (max-width: 768px) {
   .centered-text {
     font-size: 1.5rem;
@@ -46,5 +56,10 @@
 @media (max-width: 400px) {
   .centered-text {
     font-size: 1rem;
+  }
+  .no-classes {
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }

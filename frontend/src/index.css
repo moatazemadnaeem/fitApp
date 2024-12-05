@@ -33,3 +33,13 @@ code {
 .glob-spin .ant-spin-dot-holder {
   color: var(--mainColor);
 }
+.btn-orange {
+  background-color: var(--mainColor);
+  color: var(--WT);
+  margin-bottom: 1rem;
+}
+.btn-orange:hover {
+  background-color: var(--WT) !important;
+  border-color: var(--mainColor) !important;
+  color: var(--mainColor) !important;
+}

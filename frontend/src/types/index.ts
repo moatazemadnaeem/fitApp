@@ -16,7 +16,7 @@ export interface fitClassBase {
   description: string;
   maxAttendees: number;
   time: string;
-  attendingUsers: number;
+  attendingUsers: string[];
   date: string;
 }
 export interface fitClassInter {
@@ -25,6 +25,12 @@ export interface fitClassInter {
   status: boolAndNull;
   error: string;
 }
+export interface fitClassReadInter {
+  fitclasses: fitClassBase[] | [];
+  msg: string;
+  status: boolean;
+}
+export type Page = number;
 // User Types
 
 type userBase = {

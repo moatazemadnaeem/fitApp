@@ -44,13 +44,10 @@ class FitController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const page = req.body.page || 1;
-                const limit = 10;
-                const skip = (page - 1) * limit;
+                const limit = page * 10;
                 const fitclasses = yield fitnessModel_1.default.find({
                     startDate: { $gte: Date.now() },
-                })
-                    .skip(skip)
-                    .limit(limit);
+                }).limit(limit);
                 res.send({
                     msg: "Done sending all fitness classes",
                     fitclasses,

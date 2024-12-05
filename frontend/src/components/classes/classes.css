@@ -1,9 +1,13 @@
+.class-list {
+  width: 100%;
+}
 .class-card {
   border: 1px solid var(--mainColor);
   padding: 1rem;
   display: flex;
-  max-width: 90%;
+  width: 50%;
   margin: 1rem auto;
+  border-radius: 10px;
 }
 .class-card img {
   max-width: 100px;
@@ -21,6 +25,11 @@
 .class-card-content .ant-collapse-header {
   padding: 0px !important;
   color: var(--mainColor) !important;
+}
+@media (max-width: 780px) {
+  .class-card {
+    width: 90%;
+  }
 }
 @media (max-width: 540px) {
   .class-card {

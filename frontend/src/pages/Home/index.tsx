@@ -1,7 +1,12 @@
 import "./home.css";
 import lineImg from "../../assets/line.png";
 import ClassesList from "../../components/classes";
+import { useReadFitClasses } from "../../hooks/useReadFitClasses";
+import { Button } from "antd";
+import { useState } from "react";
 function Home() {
+  const [page, setPage] = useState<number>(1);
+  const { classes, loading } = useReadFitClasses(page);
   return (
     <div className="home">
       {/* Welcome section */}
@@ -26,7 +31,25 @@ function Home() {
           </p>
         </div>
         {/* classes cards + load more button */}
-        <ClassesList />
+        {classes.length < 1 ? (
+          <span className="no-classes">
+            There Are No Classes For Now Please Come Soon!
+          </span>
+        ) : (
+          <>
+            <ClassesList classes={classes} />
+            <Button
+              className="btn-orange"
+              onClick={() => {
+                setPage((prev) => prev + 1);
+              }}
+              loading={loading}
+              type="primary"
+            >
+              Load More
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
