@@ -28,9 +28,6 @@ const LinksNav = () => {
       <li className="nlink">
         <Link to="/signin"> Sign In</Link>
       </li>
-      <li className="nlink">
-        <Link to="/signup"> Sign Up</Link>
-      </li>
     </>
   );
 };

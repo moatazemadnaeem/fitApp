@@ -4,19 +4,20 @@ import fitImg from "../../assets/fitImg.png";
 import "./classes.css";
 import { Collapse } from "antd";
 import type { CollapseProps } from "antd";
-
+import ReadMore from "./readMore";
 const text = `
   fitness is your way to achieve your peak.
 `;
 
-const items: CollapseProps["items"] = [
-  {
-    key: "1",
-    label: "Read More",
-    children: <p>{text}</p>,
-  },
-];
-const ClassCard: React.FC<fitClassBase> = ({ title, description }) => {
+const ClassCard: React.FC<fitClassBase> = (props) => {
+  const { title, description } = props;
+  const items: CollapseProps["items"] = [
+    {
+      key: "1",
+      label: "Read More",
+      children: <ReadMore {...props} />,
+    },
+  ];
   return (
     <div className="class-card">
       <img src={fitImg} alt="" />

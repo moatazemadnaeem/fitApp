@@ -15,9 +15,10 @@ export interface fitClassBase {
   title: string;
   description: string;
   maxAttendees: number;
-  time: string;
+  startDate: Date;
   attendingUsers: string[];
-  date: string;
+  timePeriod: Date;
+  _id: string;
 }
 export interface fitClassInter {
   classes: fitClassBase[] | [];

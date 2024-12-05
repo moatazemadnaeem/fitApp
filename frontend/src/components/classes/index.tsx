@@ -6,15 +6,16 @@ import { fitClassBase } from "../../types";
 const ClassesList: React.FC<{ classes: fitClassBase[] }> = ({ classes }) => {
   return (
     <div className="class-list">
-      {classes.map((card, indx) => (
-        <div key={indx}>
+      {classes.map((card) => (
+        <div key={card._id}>
           <ClassCard
             title={card.title}
             description={card.description}
             attendingUsers={card.attendingUsers}
-            date={card.date}
-            time={card.time}
+            startDate={card.startDate}
+            timePeriod={card.timePeriod}
             maxAttendees={card.maxAttendees}
+            _id={card._id}
           />
         </div>
       ))}

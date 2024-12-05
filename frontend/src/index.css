@@ -36,7 +36,6 @@ code {
 .btn-orange {
   background-color: var(--mainColor);
   color: var(--WT);
-  margin-bottom: 1rem;
 }
 .btn-orange:hover {
   background-color: var(--WT) !important;
