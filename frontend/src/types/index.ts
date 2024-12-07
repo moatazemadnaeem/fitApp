@@ -136,6 +136,10 @@ export interface UserSignInInter {
   name: string;
   email: string;
 }
+export interface UserEditInter {
+  name: string;
+  email: string;
+}
 
 export interface UserSignUpInter {
   name: string;
