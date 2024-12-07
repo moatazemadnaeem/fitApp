@@ -4,6 +4,9 @@ import {
   fitClassReadInter,
   BookResInter,
   CancelClassResInter,
+  fitClassInter,
+  fitClassEditInter,
+  fitClassUpdateInter,
 } from "../types/index";
 import { Page } from "../types/index";
 export const readClasses = async (page: Page) => {
@@ -73,6 +76,21 @@ export const getCreatedClasses = async (page: Page) => {
       `fitclasses/get_created_classes`,
       {
         page,
+      }
+    );
+    return data;
+  } catch (error: any) {
+    throw (
+      error?.response?.data[0]?.msg || "Something went wrong please try again."
+    );
+  }
+};
+export const editCreatedClasses = async (reqBody: fitClassEditInter) => {
+  try {
+    const { data } = await AxiosInstance.patch<fitClassUpdateInter>(
+      `fitclasses/edit_class`,
+      {
+        ...reqBody,
       }
     );
     return data;

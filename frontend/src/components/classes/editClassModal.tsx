@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button, Form, Input, InputNumber, DatePicker } from "antd";
-import { modalInter } from "../../types";
+import {
+  Modal,
+  Button,
+  Form,
+  Input,
+  InputNumber,
+  DatePicker,
+  message,
+} from "antd";
+import { fitClassEditBody, modalInter } from "../../types";
 import dayjs from "dayjs";
 import {
   validateTitle,
@@ -9,12 +17,14 @@ import {
   validateEndDate,
   validateMaxAttendees,
 } from "../../utils/validations";
+import { editCreatedClassesApi } from "../../api/fitClasses";
 const EditClassModal: React.FC<modalInter> = ({
   isModalOpen,
   setIsModalOpen,
   record,
 }) => {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState<boolean>(false);
   const [stDate, setStDate] = useState<dayjs.Dayjs>(
     dayjs(record.startDate, "YYYY-MM-DD")
   );
@@ -36,14 +46,34 @@ const EditClassModal: React.FC<modalInter> = ({
       });
     }
   }, [record]);
+  const handleEditClassApi = async (values: fitClassEditBody) => {
+    try {
+      const body = {
+        ...values,
+        classId: record._id,
+      };
+      setLoading(true);
+      const data = await editCreatedClassesApi(body);
+      if (data.status) {
+        message.success(data.msg);
+        setIsModalOpen(false);
+        window.location.reload();
+      }
+    } catch (error: any) {
+      message.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <Modal
       title="Edit Class"
       open={isModalOpen}
       onOk={handleOk}
       onCancel={handleCancel}
+      footer={null}
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" onFinish={handleEditClassApi}>
         <Form.Item
           name="title"
           label="Title"
@@ -72,7 +102,11 @@ const EditClassModal: React.FC<modalInter> = ({
           name="startDate"
           label="Start Date"
         >
-          <DatePicker onChange={(val) => setStDate(val)} />
+          <DatePicker
+            onChange={(val) => {
+              setStDate(val);
+            }}
+          />
         </Form.Item>
         <Form.Item
           rules={[
@@ -83,7 +117,21 @@ const EditClassModal: React.FC<modalInter> = ({
           name="timePeriod"
           label="End Date"
         >
-          <DatePicker onChange={(val) => setEnDate(val)} />
+          <DatePicker
+            onChange={(val) => {
+              setEnDate(val);
+            }}
+          />
+        </Form.Item>
+        <Form.Item className="edit-class-btn">
+          <Button
+            loading={loading}
+            className="btn-orange"
+            type="primary"
+            htmlType="submit"
+          >
+            Submit
+          </Button>
         </Form.Item>
       </Form>
     </Modal>

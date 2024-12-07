@@ -11,6 +11,7 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 // Fitness Classes types
+
 export interface fitClassBase {
   title: string;
   description: string;
@@ -19,6 +20,21 @@ export interface fitClassBase {
   attendingUsers: string[];
   timePeriod: Date;
   _id: string;
+}
+export interface fitClassEditInter {
+  title: string;
+  description: string;
+  maxAttendees: number;
+  startDate: Date;
+  timePeriod: Date;
+  classId: string;
+}
+export interface fitClassEditBody {
+  title: string;
+  description: string;
+  maxAttendees: number;
+  startDate: Date;
+  timePeriod: Date;
 }
 export interface fitClassInter {
   classes: fitClassBase[] | [];
@@ -30,6 +46,11 @@ export interface fitClassInter {
 }
 export interface fitClassReadInter {
   fitclasses: fitClassBase[] | [];
+  msg: string;
+  status: boolean;
+}
+export interface fitClassUpdateInter {
+  updatedFitClass: fitClassBase[] | [];
   msg: string;
   status: boolean;
 }
