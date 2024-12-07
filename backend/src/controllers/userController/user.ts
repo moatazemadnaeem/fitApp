@@ -96,10 +96,16 @@ class UserController {
       const userId = req.currentUser?.id;
       const { name, password } = req.body;
       const body = { name, password };
-      const filteredBody = _.omitBy(body, _.isUndefined);
+      let filteredBody = _.omitBy(body, _.isUndefined);
       const userfound = await User.findById(userId);
       if (!userfound) {
         throw new NotFound("this user can not be found");
+      }
+      if (filteredBody?.password) {
+        filteredBody = {
+          ...filteredBody,
+          password: hashPass(filteredBody?.password),
+        };
       }
       const updatePortion = { ...userfound.toObject(), ...filteredBody };
       await User.findOneAndUpdate(

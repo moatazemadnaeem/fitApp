@@ -1,6 +1,11 @@
 import * as userActions from "../store/features/users/createUserSlice";
-import { UserSignInInter, AppDispatch, UserSignUpInter } from "../types/index";
-import { signInUser, signUpUser } from "../services/users";
+import {
+  UserSignInInter,
+  AppDispatch,
+  UserSignUpInter,
+  UserEditInter,
+} from "../types/index";
+import { signInUser, signUpUser, editUser } from "../services/users";
 export const signInApi = async (
   reqBody: UserSignInInter,
   dispatch: AppDispatch
@@ -19,6 +24,14 @@ export const signInApi = async (
 export const signUpUserApi = async (reqBody: UserSignUpInter) => {
   try {
     const data = await signUpUser(reqBody);
+    return data;
+  } catch (error: any) {
+    throw error;
+  }
+};
+export const editUserApi = async (reqBody: UserEditInter) => {
+  try {
+    const data = await editUser(reqBody);
     return data;
   } catch (error: any) {
     throw error;

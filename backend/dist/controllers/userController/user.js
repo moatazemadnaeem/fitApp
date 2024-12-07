@@ -119,10 +119,13 @@ class UserController {
                 const userId = (_a = req.currentUser) === null || _a === void 0 ? void 0 : _a.id;
                 const { name, password } = req.body;
                 const body = { name, password };
-                const filteredBody = lodash_1.default.omitBy(body, lodash_1.default.isUndefined);
+                let filteredBody = lodash_1.default.omitBy(body, lodash_1.default.isUndefined);
                 const userfound = yield userModel_1.default.findById(userId);
                 if (!userfound) {
                     throw new notFoundError_1.NotFound("this user can not be found");
+                }
+                if (filteredBody === null || filteredBody === void 0 ? void 0 : filteredBody.password) {
+                    filteredBody = Object.assign(Object.assign({}, filteredBody), { password: (0, passowrd_1.hashPass)(filteredBody === null || filteredBody === void 0 ? void 0 : filteredBody.password) });
                 }
                 const updatePortion = Object.assign(Object.assign({}, userfound.toObject()), filteredBody);
                 yield userModel_1.default.findOneAndUpdate({

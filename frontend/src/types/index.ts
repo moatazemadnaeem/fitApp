@@ -139,6 +139,12 @@ export interface UserSignInInter {
 export interface UserEditInter {
   name: string;
   email: string;
+  password: string;
+}
+
+export interface UserEditResInter {
+  msg: string;
+  status: boolean;
 }
 
 export interface UserSignUpInter {
