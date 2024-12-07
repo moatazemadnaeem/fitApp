@@ -46,6 +46,9 @@ const EditClassModal: React.FC<modalInter> = ({
       });
     }
   }, [record]);
+  useEffect(() => {
+    form.validateFields();
+  }, [form.getFieldValue("startDate"), form.getFieldValue("timePeriod")]);
   const handleEditClassApi = async (values: fitClassEditBody) => {
     try {
       const body = {
