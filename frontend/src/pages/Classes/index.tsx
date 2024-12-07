@@ -23,7 +23,7 @@ function CreatedClasses() {
             them as you want or even add new classes.
           </p>
           <div style={{ marginTop: "1rem" }}>
-            <Button onClick={showModal} className="btn-orange">
+            <Button className="btn-dark" onClick={showModal}>
               Create Class
             </Button>
           </div>

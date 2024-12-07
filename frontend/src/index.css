@@ -42,6 +42,33 @@ code {
   border-color: var(--mainColor) !important;
   color: var(--mainColor) !important;
 }
+.btn-red {
+  background-color: var(--errorColor);
+  color: var(--WT);
+}
+.btn-red:hover {
+  background-color: var(--WT) !important;
+  border-color: var(--errorColor) !important;
+  color: var(--errorColor) !important;
+}
+.btn-yellow {
+  background-color: var(--goldColor);
+  color: var(--WT);
+}
+.btn-yellow:hover {
+  background-color: var(--WT) !important;
+  border-color: var(--goldColor) !important;
+  color: var(--goldColor) !important;
+}
+.btn-dark {
+  background-color: var(--Dark);
+  color: var(--WT);
+}
+.btn-dark:hover {
+  background-color: var(--WT) !important;
+  border-color: var(--Dark) !important;
+  color: var(--Dark) !important;
+}
 .classes-section {
   display: flex;
   flex-direction: column;

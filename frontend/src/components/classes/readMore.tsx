@@ -7,6 +7,7 @@ import { RootState } from "../../types";
 import { bookClassApi, cancelClassApi } from "../../api/fitClasses";
 import { useLocation } from "react-router-dom";
 import EditClassModal from "./editClassModal";
+import DeleteClassModal from "./deleteClassModal";
 const ReadMore: React.FC<fitClassBase> = ({
   maxAttendees,
   attendingUsers,
@@ -24,6 +25,10 @@ const ReadMore: React.FC<fitClassBase> = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const showModal = () => {
     setIsModalOpen(true);
+  };
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const showDeleteModal = () => {
+    setIsDeleteModalOpen(true);
   };
 
   const handleBookClassApi = async (id: string) => {
@@ -71,7 +76,7 @@ const ReadMore: React.FC<fitClassBase> = ({
           <Button
             onClick={() => handleCancelClassApi(_id)}
             loading={loadingCancel}
-            className="btn-read btn-orange"
+            className="btn-read btn-yellow"
             type="primary"
           >
             Cancel
@@ -80,13 +85,22 @@ const ReadMore: React.FC<fitClassBase> = ({
       }
       if (path === PagesPaths.CLASSESPATH) {
         return (
-          <Button
-            onClick={showModal}
-            className="btn-read btn-orange"
-            type="primary"
-          >
-            Edit
-          </Button>
+          <div>
+            <Button
+              onClick={showModal}
+              className="btn-read btn-orange"
+              type="primary"
+            >
+              Edit
+            </Button>
+            <Button
+              onClick={showDeleteModal}
+              className="btn-delete btn-red"
+              type="primary"
+            >
+              Delete
+            </Button>
+          </div>
         );
       }
     }
@@ -127,6 +141,11 @@ const ReadMore: React.FC<fitClassBase> = ({
           attendingUsers,
           title,
         }}
+      />
+      <DeleteClassModal
+        isDeleteModalOpen={isDeleteModalOpen}
+        setIsDeleteModalOpen={setIsDeleteModalOpen}
+        classId={_id}
       />
     </div>
   );

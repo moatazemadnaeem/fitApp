@@ -65,6 +65,13 @@
   display: flex;
   justify-content: center;
 }
+.delete-btn-container {
+  display: flex;
+  margin-top: 1rem;
+}
+.delete-btn-container .btn-red {
+  margin-right: 1rem;
+}
 @media (max-width: 850px) {
   .class-card {
     width: 90%;
@@ -82,7 +89,6 @@
     margin-bottom: 0.5rem;
   }
   .btn-read {
-    margin-right: 0rem;
     margin-bottom: 0.5rem;
   }
 }

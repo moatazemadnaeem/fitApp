@@ -13,6 +13,7 @@ import {
   getCreatedClasses,
   editCreatedClasses,
   createClasses,
+  deleteClass,
 } from "../services/fitClasses";
 export const readClassesApi = async (reqBody: Page, dispatch: AppDispatch) => {
   try {
@@ -77,6 +78,14 @@ export const editCreatedClassesApi = async (reqBody: fitClassEditInter) => {
 export const createClassesApi = async (reqBody: fitClassCreateInter) => {
   try {
     const data = await createClasses(reqBody);
+    return data;
+  } catch (error: any) {
+    throw error;
+  }
+};
+export const deleteClassesApi = async (classId: string) => {
+  try {
+    const data = await deleteClass(classId);
     return data;
   } catch (error: any) {
     throw error;

@@ -7,6 +7,7 @@ import {
   fitClassEditInter,
   fitClassUpdateInter,
   fitClassCreateResInter,
+  DeleteClassResInter,
 } from "../types/index";
 import { Page } from "../types/index";
 export const readClasses = async (page: Page) => {
@@ -106,6 +107,21 @@ export const createClasses = async (reqBody: fitClassCreateInter) => {
       `fitclasses/create_class`,
       {
         ...reqBody,
+      }
+    );
+    return data;
+  } catch (error: any) {
+    throw (
+      error?.response?.data[0]?.msg || "Something went wrong please try again."
+    );
+  }
+};
+export const deleteClass = async (classId: string) => {
+  try {
+    const { data } = await AxiosInstance.delete<DeleteClassResInter>(
+      `fitclasses/delete_class`,
+      {
+        data: { classId },
       }
     );
     return data;

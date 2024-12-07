@@ -78,6 +78,11 @@ export interface CancelClassResInter {
   status: boolean;
   classCanceled: fitClassBase;
 }
+export interface DeleteClassResInter {
+  msg: string;
+  status: boolean;
+  deletedFitClass: fitClassBase;
+}
 export type Page = number;
 
 export enum Pages {
@@ -99,6 +104,11 @@ export interface modalInter {
 export interface modalCreateInter {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
+}
+export interface modalDeleteInter {
+  setIsDeleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isDeleteModalOpen: boolean;
+  classId: string;
 }
 // User Types
 
