@@ -45,8 +45,10 @@ class FitController {
             try {
                 const page = req.body.page || 1;
                 const limit = page * 10;
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
                 const fitclasses = yield fitnessModel_1.default.find({
-                    startDate: { $gte: Date.now() },
+                    startDate: { $gte: now },
                 }).limit(limit);
                 res.send({
                     msg: "Done sending all fitness classes",
@@ -187,8 +189,10 @@ class FitController {
                 const page = req.body.page || 1;
                 const id = (_a = req.currentUser) === null || _a === void 0 ? void 0 : _a.id;
                 const limit = page * 10;
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
                 const fitclasses = yield fitnessModel_1.default.find({
-                    timePeriod: { $gte: Date.now() },
+                    timePeriod: { $gte: now },
                     attendingUsers: { $in: [id] },
                 }).limit(limit);
                 res.send({

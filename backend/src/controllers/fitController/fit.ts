@@ -30,8 +30,10 @@ class FitController {
     try {
       const page = req.body.page || 1;
       const limit = page * 10;
+      const now = new Date();
+      now.setHours(0, 0, 0, 0);
       const fitclasses = await FitClasses.find({
-        startDate: { $gte: Date.now() },
+        startDate: { $gte: now },
       }).limit(limit);
       res.send({
         msg: "Done sending all fitness classes",
@@ -167,8 +169,10 @@ class FitController {
       const page = req.body.page || 1;
       const id = req.currentUser?.id;
       const limit = page * 10;
+      const now = new Date();
+      now.setHours(0, 0, 0, 0);
       const fitclasses = await FitClasses.find({
-        timePeriod: { $gte: Date.now() },
+        timePeriod: { $gte: now },
         attendingUsers: { $in: [id] },
       }).limit(limit);
       res.send({
