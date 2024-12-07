@@ -89,6 +89,13 @@ const Profile = () => {
           </Button>
         </Form.Item>
       </Form>
+      <Button
+        style={{ marginTop: "1rem" }}
+        className="btn-red-dark"
+        type="primary"
+      >
+        Sign Out
+      </Button>
     </div>
   );
 };

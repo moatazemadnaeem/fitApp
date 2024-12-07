@@ -51,6 +51,15 @@ code {
   border-color: var(--errorColor) !important;
   color: var(--errorColor) !important;
 }
+.btn-red-dark {
+  background-color: var(--errorColor);
+  color: var(--WT);
+}
+.btn-red-dark:hover {
+  background-color: var(--lightDark) !important;
+  border-color: var(--errorColor) !important;
+  color: var(--errorColor) !important;
+}
 .btn-yellow {
   background-color: var(--goldColor);
   color: var(--WT);
