@@ -11,6 +11,7 @@ const AxiosInstance = axios.create({
 const protectedUrls = [
   "users/current_user",
   "users/signout",
+  "users/edit_user",
   "fitclasses/create_class",
   "fitclasses/edit_class",
   "fitclasses/delete_class",
