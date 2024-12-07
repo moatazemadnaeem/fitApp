@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { __Router } from "../../types";
 import { userController } from "../../controllers/userController/user";
+import { Auth } from "../../middlewares/auth";
 class SignOut implements __Router {
   path = "/users/signout";
   router = Router();
@@ -10,7 +11,7 @@ class SignOut implements __Router {
   }
 
   private initializeRoutes(): void {
-    this.router.get(`${this.path}`, userController.signout);
+    this.router.get(`${this.path}`, Auth, userController.signout);
   }
 }
 

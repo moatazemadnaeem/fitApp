@@ -3,11 +3,13 @@ import { Form, Input, Button, message } from "antd";
 import { useState } from "react";
 import { validateName, validatePassword } from "../../utils/validations";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState, UserEditInter } from "../../types";
-import { editUserApi } from "../../api/users";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState, UserEditInter } from "../../types";
+import { editUserApi, signOutUserApi } from "../../api/users";
 const Profile = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [signOutLoading, setSignOutLoading] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
   const [dropPass, setDropPass] = useState<boolean>(false);
   const [form] = Form.useForm();
   const user = useSelector<RootState>(
@@ -31,6 +33,17 @@ const Profile = () => {
       message.error(error);
     } finally {
       setLoading(false);
+    }
+  };
+  const handleSignOutUserApi = async () => {
+    try {
+      setSignOutLoading(true);
+      await signOutUserApi(dispatch);
+      window.location.reload();
+    } catch (error: any) {
+      message.error(error);
+    } finally {
+      setSignOutLoading(false);
     }
   };
   return (
@@ -93,6 +106,8 @@ const Profile = () => {
         style={{ marginTop: "1rem" }}
         className="btn-red-dark"
         type="primary"
+        loading={signOutLoading}
+        onClick={handleSignOutUserApi}
       >
         Sign Out
       </Button>

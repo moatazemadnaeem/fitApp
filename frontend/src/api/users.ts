@@ -5,7 +5,12 @@ import {
   UserSignUpInter,
   UserEditInter,
 } from "../types/index";
-import { signInUser, signUpUser, editUser } from "../services/users";
+import {
+  signInUser,
+  signUpUser,
+  editUser,
+  signOutUser,
+} from "../services/users";
 export const signInApi = async (
   reqBody: UserSignInInter,
   dispatch: AppDispatch
@@ -32,6 +37,15 @@ export const signUpUserApi = async (reqBody: UserSignUpInter) => {
 export const editUserApi = async (reqBody: UserEditInter) => {
   try {
     const data = await editUser(reqBody);
+    return data;
+  } catch (error: any) {
+    throw error;
+  }
+};
+export const signOutUserApi = async (dispatch: AppDispatch) => {
+  try {
+    const data = await signOutUser();
+    dispatch(userActions.signout_user());
     return data;
   } catch (error: any) {
     throw error;

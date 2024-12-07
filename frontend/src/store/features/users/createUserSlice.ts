@@ -40,6 +40,12 @@ const userSlice = createSlice({
       state.status = false;
       state.currLoading = false;
     },
+    signout_user: (state) => {
+      state.user = null;
+      state.token = null;
+      state.status = false;
+      sessionStorage.removeItem("jwt");
+    },
   },
 });
 export default userSlice.reducer;
@@ -49,4 +55,5 @@ export const {
   fail_signin_user,
   curr_user,
   curr_user_loading,
+  signout_user,
 } = userSlice.actions;

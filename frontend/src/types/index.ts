@@ -146,6 +146,10 @@ export interface UserEditResInter {
   msg: string;
   status: boolean;
 }
+export interface UserSignOutResInter {
+  currentUser: boolean;
+  token: boolean;
+}
 
 export interface UserSignUpInter {
   name: string;

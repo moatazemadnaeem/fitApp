@@ -5,6 +5,7 @@ import {
   userResInter,
   UserEditInter,
   UserEditResInter,
+  UserSignOutResInter,
 } from "../types/index";
 
 export const signInUser = async (requestBody: UserSignInInter) => {
@@ -41,6 +42,18 @@ export const editUser = async (requestBody: UserEditInter) => {
       {
         ...requestBody,
       }
+    );
+    return data;
+  } catch (error: any) {
+    throw (
+      error?.response?.data[0]?.msg || "Something went wrong please try again."
+    );
+  }
+};
+export const signOutUser = async () => {
+  try {
+    const { data } = await AxiosInstance.get<UserSignOutResInter>(
+      `users/signout`
     );
     return data;
   } catch (error: any) {

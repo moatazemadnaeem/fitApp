@@ -10,12 +10,14 @@ const AxiosInstance = axios.create({
 });
 const protectedUrls = [
   "users/current_user",
+  "users/signout",
   "fitclasses/create_class",
   "fitclasses/edit_class",
   "fitclasses/delete_class",
   "fitclasses/book_class",
   "fitclasses/cancel_class",
   "fitclasses/get_booked_classes",
+  "fitclasses/get_created_classes",
 ];
 AxiosInstance.interceptors.request.use(
   (config) => {
