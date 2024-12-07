@@ -1,4 +1,9 @@
-import { AppDispatch, fitClassEditInter, Page } from "../types";
+import {
+  AppDispatch,
+  fitClassEditInter,
+  Page,
+  fitClassCreateInter,
+} from "../types";
 import * as fitClassesActions from "../store/features/fitClasses/createFitClassesSlice";
 import {
   readClasses,
@@ -7,6 +12,7 @@ import {
   cancelClass,
   getCreatedClasses,
   editCreatedClasses,
+  createClasses,
 } from "../services/fitClasses";
 export const readClassesApi = async (reqBody: Page, dispatch: AppDispatch) => {
   try {
@@ -63,6 +69,14 @@ export const getCreatedClassesApi = async (
 export const editCreatedClassesApi = async (reqBody: fitClassEditInter) => {
   try {
     const data = await editCreatedClasses(reqBody);
+    return data;
+  } catch (error: any) {
+    throw error;
+  }
+};
+export const createClassesApi = async (reqBody: fitClassCreateInter) => {
+  try {
+    const data = await createClasses(reqBody);
     return data;
   } catch (error: any) {
     throw error;

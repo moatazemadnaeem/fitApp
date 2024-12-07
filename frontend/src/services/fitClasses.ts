@@ -1,12 +1,12 @@
 import { AxiosInstance } from "../configs/AxiosConfig";
 import {
-  BodyIdInter,
   fitClassReadInter,
   BookResInter,
   CancelClassResInter,
-  fitClassInter,
+  fitClassCreateInter,
   fitClassEditInter,
   fitClassUpdateInter,
+  fitClassCreateResInter,
 } from "../types/index";
 import { Page } from "../types/index";
 export const readClasses = async (page: Page) => {
@@ -89,6 +89,21 @@ export const editCreatedClasses = async (reqBody: fitClassEditInter) => {
   try {
     const { data } = await AxiosInstance.patch<fitClassUpdateInter>(
       `fitclasses/edit_class`,
+      {
+        ...reqBody,
+      }
+    );
+    return data;
+  } catch (error: any) {
+    throw (
+      error?.response?.data[0]?.msg || "Something went wrong please try again."
+    );
+  }
+};
+export const createClasses = async (reqBody: fitClassCreateInter) => {
+  try {
+    const { data } = await AxiosInstance.post<fitClassCreateResInter>(
+      `fitclasses/create_class`,
       {
         ...reqBody,
       }

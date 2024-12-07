@@ -29,6 +29,17 @@ export interface fitClassEditInter {
   timePeriod: Date;
   classId: string;
 }
+export interface fitClassCreateInter {
+  title: string;
+  description: string;
+  maxAttendees: number;
+  startDate: Date;
+  timePeriod: Date;
+}
+export interface fitClassCreateResInter {
+  msg: string;
+  status: boolean;
+}
 export interface fitClassEditBody {
   title: string;
   description: string;
@@ -84,6 +95,10 @@ export interface modalInter {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
   record: fitClassBase;
+}
+export interface modalCreateInter {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalOpen: boolean;
 }
 // User Types
 

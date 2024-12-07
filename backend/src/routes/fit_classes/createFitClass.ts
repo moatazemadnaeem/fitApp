@@ -38,7 +38,11 @@ class CreateFitClass implements __Router {
           .isISO8601()
           .withMessage("startDate must be a valid date ex:YYYY-MM-DD")
           .custom((value) => {
-            if (new Date(value) < new Date()) {
+            const inputDate = new Date(value);
+            const currentDate = new Date();
+            inputDate.setHours(0, 0, 0, 0);
+            currentDate.setHours(0, 0, 0, 0);
+            if (inputDate < currentDate) {
               throw new Error(
                 "startDate must be greater than the current date"
               );
@@ -49,7 +53,11 @@ class CreateFitClass implements __Router {
           .isISO8601()
           .withMessage("timePeriod must be a valid date ex:YYYY-MM-DD")
           .custom((value, { req }) => {
-            if (value < req.body.startDate) {
+            const endDate = new Date(value);
+            const startDate = new Date(req.body.startDate);
+            endDate.setHours(0, 0, 0, 0);
+            startDate.setHours(0, 0, 0, 0);
+            if (endDate < startDate) {
               throw new Error(
                 "timePeriod must be greater or equal than the start date date"
               );

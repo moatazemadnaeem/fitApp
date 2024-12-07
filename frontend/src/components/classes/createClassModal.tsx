@@ -8,7 +8,7 @@ import {
   DatePicker,
   message,
 } from "antd";
-import { fitClassEditBody, modalInter } from "../../types";
+import { fitClassEditBody, modalCreateInter, modalInter } from "../../types";
 import dayjs from "dayjs";
 import {
   validateTitle,
@@ -17,19 +17,18 @@ import {
   validateEndDate,
   validateMaxAttendees,
 } from "../../utils/validations";
-import { editCreatedClassesApi } from "../../api/fitClasses";
-const EditClassModal: React.FC<modalInter> = ({
+import { createClassesApi } from "../../api/fitClasses";
+const CreateClassModal: React.FC<modalCreateInter> = ({
   isModalOpen,
   setIsModalOpen,
-  record,
 }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(false);
   const [stDate, setStDate] = useState<dayjs.Dayjs>(
-    dayjs(record.startDate, "YYYY-MM-DD")
+    dayjs(new Date(), "YYYY-MM-DD")
   );
   const [enDate, setEnDate] = useState<dayjs.Dayjs>(
-    dayjs(record.timePeriod, "YYYY-MM-DD")
+    dayjs(new Date(), "YYYY-MM-DD")
   );
   const handleOk = () => {
     setIsModalOpen(false);
@@ -38,25 +37,12 @@ const EditClassModal: React.FC<modalInter> = ({
     setIsModalOpen(false);
   };
   useEffect(() => {
-    if (record) {
-      form.setFieldsValue({
-        ...record,
-        startDate: dayjs(record.startDate, "YYYY-MM-DD"),
-        timePeriod: dayjs(record.timePeriod, "YYYY-MM-DD"),
-      });
-    }
-  }, [record]);
-  useEffect(() => {
     form.validateFields();
   }, [form.getFieldValue("startDate"), form.getFieldValue("timePeriod")]);
-  const handleEditClassApi = async (values: fitClassEditBody) => {
+  const handleCreateClassApi = async (values: fitClassEditBody) => {
     try {
-      const body = {
-        ...values,
-        classId: record._id,
-      };
       setLoading(true);
-      const data = await editCreatedClassesApi(body);
+      const data = await createClassesApi(values);
       if (data.status) {
         message.success(data.msg);
         setIsModalOpen(false);
@@ -70,13 +56,13 @@ const EditClassModal: React.FC<modalInter> = ({
   };
   return (
     <Modal
-      title="Edit Class"
+      title="Create Class"
       open={isModalOpen}
       onOk={handleOk}
       onCancel={handleCancel}
       footer={null}
     >
-      <Form form={form} layout="vertical" onFinish={handleEditClassApi}>
+      <Form form={form} layout="vertical" onFinish={handleCreateClassApi}>
         <Form.Item
           name="title"
           label="Title"
@@ -141,4 +127,4 @@ const EditClassModal: React.FC<modalInter> = ({
   );
 };
 
-export default EditClassModal;
+export default CreateClassModal;
