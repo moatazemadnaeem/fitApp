@@ -46,6 +46,7 @@ const createUser_1 = __importDefault(require("./routes/users/createUser"));
 const signInUser_1 = __importDefault(require("./routes/users/signInUser"));
 const currentUser_1 = __importDefault(require("./routes/users/currentUser"));
 const signoutUser_1 = __importDefault(require("./routes/users/signoutUser"));
+const updateUser_1 = __importDefault(require("./routes/users/updateUser"));
 //Fitness
 const createFitClass_1 = __importDefault(require("./routes/fit_classes/createFitClass"));
 const getFitClasses_1 = __importDefault(require("./routes/fit_classes/getFitClasses"));
@@ -61,6 +62,7 @@ new app_1.default([
     new signInUser_1.default(),
     new currentUser_1.default(),
     new signoutUser_1.default(),
+    new updateUser_1.default(),
     //fitness classes
     new createFitClass_1.default(),
     new getFitClasses_1.default(),

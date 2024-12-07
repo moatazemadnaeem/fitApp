@@ -18,6 +18,7 @@ const badReqError_1 = require("../../error_classes/badReqError");
 const passowrd_1 = require("../../utils/passowrd");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const notFoundError_1 = require("../../error_classes/notFoundError");
+const lodash_1 = __importDefault(require("lodash"));
 class UserController {
     create_user(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -108,6 +109,32 @@ class UserController {
             }
             else {
                 res.send({ currentUser: null });
+            }
+        });
+    }
+    edit_user(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            try {
+                const userId = (_a = req.currentUser) === null || _a === void 0 ? void 0 : _a.id;
+                const { name, password } = req.body;
+                const body = { name, password };
+                const filteredBody = lodash_1.default.omitBy(body, lodash_1.default.isUndefined);
+                const userfound = yield userModel_1.default.findById(userId);
+                if (!userfound) {
+                    throw new notFoundError_1.NotFound("this user can not be found");
+                }
+                const updatePortion = Object.assign(Object.assign({}, userfound.toObject()), filteredBody);
+                yield userModel_1.default.findOneAndUpdate({
+                    _id: userId,
+                }, { $set: updatePortion }, { new: true });
+                res.send({
+                    msg: "Done updating the user",
+                    status: true,
+                });
+            }
+            catch (error) {
+                throw new badReqError_1.BadReqErr(error.message);
             }
         });
     }

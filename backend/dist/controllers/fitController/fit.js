@@ -19,6 +19,7 @@ const badReqError_1 = require("../../error_classes/badReqError");
 const notFoundError_1 = require("../../error_classes/notFoundError");
 const convertStrToObjectId_1 = __importDefault(require("../../utils/convertStrToObjectId"));
 const notAuthError_1 = require("../../error_classes/notAuthError");
+const lodash_1 = __importDefault(require("lodash"));
 class FitController {
     create_class(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -66,6 +67,15 @@ class FitController {
             var _a;
             try {
                 const { classId } = req.body;
+                const { title, description, startDate, timePeriod, maxAttendees } = req.body;
+                const body = {
+                    title,
+                    description,
+                    startDate,
+                    timePeriod,
+                    maxAttendees,
+                };
+                const filteredBody = lodash_1.default.omitBy(body, lodash_1.default.isUndefined);
                 const userId = (_a = req.currentUser) === null || _a === void 0 ? void 0 : _a.id;
                 const classfound = yield fitnessModel_1.default.findById(classId);
                 if (!classfound) {
@@ -74,8 +84,7 @@ class FitController {
                 if (classfound.userId.toString() !== userId) {
                     throw new notAuthError_1.NotAuth("You can not edit class that not yours");
                 }
-                const updatePortion = Object.assign(Object.assign({}, classfound.toObject()), req.body);
-                delete updatePortion.classId;
+                const updatePortion = Object.assign(Object.assign({}, classfound.toObject()), filteredBody);
                 const updatedFitClass = yield fitnessModel_1.default.findOneAndUpdate({
                     _id: classId,
                 }, { $set: updatePortion }, { new: true });

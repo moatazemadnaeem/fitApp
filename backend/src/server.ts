@@ -8,6 +8,7 @@ import CreateUser from "./routes/users/createUser";
 import SignIn from "./routes/users/signInUser";
 import CurrentUser from "./routes/users/currentUser";
 import SignOut from "./routes/users/signoutUser";
+import UpdateUser from "./routes/users/updateUser";
 //Fitness
 import CreateFitClass from "./routes/fit_classes/createFitClass";
 import GetFitClasses from "./routes/fit_classes/getFitClasses";
@@ -24,6 +25,7 @@ new App(
     new SignIn(),
     new CurrentUser(),
     new SignOut(),
+    new UpdateUser(),
     //fitness classes
     new CreateFitClass(),
     new GetFitClasses(),

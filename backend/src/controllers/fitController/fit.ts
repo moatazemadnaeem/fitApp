@@ -6,6 +6,8 @@ import { currRequest } from "../../types";
 import { NotFound } from "../../error_classes/notFoundError";
 import convertStrToObjID from "../../utils/convertStrToObjectId";
 import { NotAuth } from "../../error_classes/notAuthError";
+import _ from "lodash";
+
 class FitController {
   public async create_class(req: currRequest, res: Response) {
     try {
@@ -47,6 +49,16 @@ class FitController {
   public async edit_class(req: currRequest, res: Response) {
     try {
       const { classId } = req.body;
+      const { title, description, startDate, timePeriod, maxAttendees } =
+        req.body;
+      const body = {
+        title,
+        description,
+        startDate,
+        timePeriod,
+        maxAttendees,
+      };
+      const filteredBody = _.omitBy(body, _.isUndefined);
       const userId = req.currentUser?.id;
       const classfound = await FitClasses.findById(classId);
       if (!classfound) {
@@ -55,8 +67,7 @@ class FitController {
       if (classfound.userId.toString() !== userId) {
         throw new NotAuth("You can not edit class that not yours");
       }
-      const updatePortion = { ...classfound.toObject(), ...req.body };
-      delete updatePortion.classId;
+      const updatePortion = { ...classfound.toObject(), ...filteredBody };
       const updatedFitClass = await FitClasses.findOneAndUpdate(
         {
           _id: classId,

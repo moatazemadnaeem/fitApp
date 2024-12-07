@@ -5,6 +5,7 @@ import { hashPass, comparePass } from "../../utils/passowrd";
 import jwt from "jsonwebtoken";
 import { currRequest } from "../../types";
 import { NotFound } from "../../error_classes/notFoundError";
+import _ from "lodash";
 class UserController {
   public async create_user(req: Request, res: Response) {
     try {
@@ -88,6 +89,32 @@ class UserController {
       }
     } else {
       res.send({ currentUser: null });
+    }
+  }
+  public async edit_user(req: currRequest, res: Response) {
+    try {
+      const userId = req.currentUser?.id;
+      const { name, password } = req.body;
+      const body = { name, password };
+      const filteredBody = _.omitBy(body, _.isUndefined);
+      const userfound = await User.findById(userId);
+      if (!userfound) {
+        throw new NotFound("this user can not be found");
+      }
+      const updatePortion = { ...userfound.toObject(), ...filteredBody };
+      await User.findOneAndUpdate(
+        {
+          _id: userId,
+        },
+        { $set: updatePortion },
+        { new: true }
+      );
+      res.send({
+        msg: "Done updating the user",
+        status: true,
+      });
+    } catch (error: any) {
+      throw new BadReqErr(error.message);
     }
   }
 }
