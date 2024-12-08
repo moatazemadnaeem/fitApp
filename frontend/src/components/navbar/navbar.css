@@ -46,16 +46,16 @@
     top: 80px;
     right: 50%;
     transform: translateX(50%);
-    background-color: var(--WT);
+    background-color: var(--Dark);
     padding: 10px;
     width: 90%;
   }
   .show .nlink {
-    border-bottom: 0.5px solid var(--Dark);
+    border-bottom: 0.5px solid var(--mainColor);
     width: 90%;
   }
   .show .nlink a {
-    color: var(--Dark);
+    color: var(--mainColor);
     display: flex;
     justify-content: center;
     width: 100%;

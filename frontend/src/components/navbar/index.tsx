@@ -12,24 +12,18 @@ function NavBar() {
 
   return (
     <nav className="nav">
-      {/* Brand */}
       <h3>
         <Link to="/">
           {" "}
           Fitness <span style={{ color: "var(--mainColor)" }}>Club</span>
         </Link>
       </h3>
-
-      {/* SignIn */}
-      {/* SignUp */}
       <ul className={`navlinks ${navOpen ? "show" : ""}`}>
         <LinksNav />
       </ul>
-      {/* Menu Icon */}
       <div className="nav-menu-icon" onClick={toggleNav}>
         {navOpen ? <CloseOutlined /> : <MenuOutlined />}
       </div>
-      {/* Profile (Auth) */}
     </nav>
   );
 }

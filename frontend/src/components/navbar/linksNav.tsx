@@ -20,6 +20,9 @@ const LinksNav = () => {
         <li className="nlink">
           <Link to="/profile">Profile</Link>
         </li>
+        <li className="nlink">
+          <Link to="/">Home</Link>
+        </li>
       </>
     );
   }
@@ -27,6 +30,9 @@ const LinksNav = () => {
     <>
       <li className="nlink">
         <Link to="/signin"> Sign In</Link>
+      </li>
+      <li className="nlink">
+        <Link to="/">Home</Link>
       </li>
     </>
   );
