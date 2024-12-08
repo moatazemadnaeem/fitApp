@@ -67,6 +67,9 @@ class FitController {
       if (classfound.userId.toString() !== userId) {
         throw new NotAuth("You can not edit class that not yours");
       }
+      if (classfound.attendingUsers.length > maxAttendees) {
+        throw new NotAuth("maxAttendees must be bigger than attending users");
+      }
       const updatePortion = { ...classfound.toObject(), ...filteredBody };
       const updatedFitClass = await FitClasses.findOneAndUpdate(
         {
@@ -118,6 +121,10 @@ class FitController {
       if (!classFound) {
         throw new BadReqErr("Class can not be found");
       }
+      if (classFound.attendingUsers.length === classFound.maxAttendees) {
+        throw new BadReqErr("Can not book the class becauseits full");
+      }
+
       const FitClassNoUser = await FitClasses.find({
         _id: classId,
         attendingUsers: { $in: userId },

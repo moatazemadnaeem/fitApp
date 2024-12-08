@@ -84,6 +84,9 @@ class FitController {
                 if (classfound.userId.toString() !== userId) {
                     throw new notAuthError_1.NotAuth("You can not edit class that not yours");
                 }
+                if (classfound.attendingUsers.length > maxAttendees) {
+                    throw new notAuthError_1.NotAuth("maxAttendees must be bigger than attending users");
+                }
                 const updatePortion = Object.assign(Object.assign({}, classfound.toObject()), filteredBody);
                 const updatedFitClass = yield fitnessModel_1.default.findOneAndUpdate({
                     _id: classId,
@@ -137,6 +140,9 @@ class FitController {
                 const classFound = yield fitnessModel_1.default.findById(classId);
                 if (!classFound) {
                     throw new badReqError_1.BadReqErr("Class can not be found");
+                }
+                if (classFound.attendingUsers.length === classFound.maxAttendees) {
+                    throw new badReqError_1.BadReqErr("Can not book the class becauseits full");
                 }
                 const FitClassNoUser = yield fitnessModel_1.default.find({
                     _id: classId,
