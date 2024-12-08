@@ -46,12 +46,12 @@ export const readBookedClassesApi = async (
   dispatch: AppDispatch
 ) => {
   try {
-    dispatch(fitClassesActions.loading_dash());
+    dispatch(fitClassesActions.req_classes_dash());
     const data = await getBookedClasses(reqBody);
-    dispatch(fitClassesActions.get_classes(data.fitclasses));
+    dispatch(fitClassesActions.get_classes_dash(data.fitclasses));
     return data;
   } catch (error: any) {
-    dispatch(fitClassesActions.fail_get_classes(error));
+    dispatch(fitClassesActions.fail_get_classes_dash(error));
   }
 };
 export const getCreatedClassesApi = async (
@@ -59,12 +59,12 @@ export const getCreatedClassesApi = async (
   dispatch: AppDispatch
 ) => {
   try {
-    dispatch(fitClassesActions.loading_class());
+    dispatch(fitClassesActions.req_classes_create());
     const data = await getCreatedClasses(reqBody);
-    dispatch(fitClassesActions.get_classes(data.fitclasses));
+    dispatch(fitClassesActions.get_classes_create(data.fitclasses));
     return data;
   } catch (error: any) {
-    dispatch(fitClassesActions.fail_get_classes(error));
+    dispatch(fitClassesActions.fail_get_classes_create(error));
   }
 };
 export const editCreatedClassesApi = async (reqBody: fitClassEditInter) => {

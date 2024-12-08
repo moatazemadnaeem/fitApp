@@ -9,7 +9,7 @@ import {
 import { message } from "antd";
 export function useReadFitClasses(page: Page, type: Pages) {
   const dispatch = useDispatch();
-  const { classes, loading, error, status, loadingDash, loadingClass } =
+  const { classes, loading, error, status, createdClasses, dashboard } =
     useSelector<RootState>((state) => state.classes) as fitClassInter;
   useEffect(() => {
     if (type === Pages.HOME) {
@@ -23,9 +23,21 @@ export function useReadFitClasses(page: Page, type: Pages) {
     }
   }, [page, type]);
   useEffect(() => {
-    if (error && error.length > 0) {
-      message.error(error);
+    if (type === Pages.HOME) {
+      if (error && error.length > 0) {
+        message.error(error);
+      }
     }
-  }, [error]);
-  return { classes, loading, status, error, loadingDash, loadingClass };
+    if (type === Pages.DASHBOARD) {
+      if (createdClasses.error && createdClasses.error.length > 0) {
+        message.error(createdClasses.error);
+      }
+    }
+    if (type === Pages.CLASSES) {
+      if (dashboard.error && dashboard.error.length > 0) {
+        message.error(dashboard.error);
+      }
+    }
+  }, [type, error, createdClasses.error, dashboard.error]);
+  return { classes, loading, status, error, createdClasses, dashboard };
 }

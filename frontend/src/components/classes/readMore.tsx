@@ -37,6 +37,7 @@ const ReadMore: React.FC<fitClassBase> = ({
       const data = await bookClassApi(id);
       if (data.status) {
         message.success(data.msg);
+        window.location.reload();
       }
     } catch (error: any) {
       message.error(error);
@@ -50,6 +51,7 @@ const ReadMore: React.FC<fitClassBase> = ({
       const data = await cancelClassApi(id);
       if (data.status) {
         message.success(data.msg);
+        window.location.reload();
       }
     } catch (error: any) {
       message.error(error);

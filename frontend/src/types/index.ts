@@ -52,8 +52,18 @@ export interface fitClassInter {
   loading: boolean;
   status: boolAndNull;
   error: string;
-  loadingDash: boolean;
-  loadingClass: boolean;
+  dashboard: {
+    classes: fitClassBase[] | [];
+    loading: boolean;
+    status: boolAndNull;
+    error: string;
+  };
+  createdClasses: {
+    classes: fitClassBase[] | [];
+    loading: boolean;
+    status: boolAndNull;
+    error: string;
+  };
 }
 export interface fitClassReadInter {
   fitclasses: fitClassBase[] | [];
