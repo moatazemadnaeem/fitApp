@@ -37,6 +37,9 @@
 .btn-read {
   margin-right: 1rem;
 }
+.btn-load {
+  margin-bottom: 2rem !important;
+}
 .class-card-content .ant-collapse-content-box {
   padding-left: 0px !important;
 }

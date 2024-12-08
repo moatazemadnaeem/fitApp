@@ -33,7 +33,7 @@ const FitClasses: React.FC<{ type: PageType }> = ({ type }) => {
               </div>
             ))}
             <Button
-              className="btn-class btn-orange"
+              className="btn-class btn-orange btn-load"
               loading={loading}
               onClick={() => {
                 setPage((prev) => prev + 1);
@@ -73,7 +73,7 @@ const FitClasses: React.FC<{ type: PageType }> = ({ type }) => {
               </div>
             ))}
             <Button
-              className="btn-class btn-orange"
+              className="btn-class btn-orange btn-load"
               loading={dashboard.loading}
               onClick={() => {
                 setPage((prev) => prev + 1);
@@ -115,7 +115,7 @@ const FitClasses: React.FC<{ type: PageType }> = ({ type }) => {
               </div>
             ))}
             <Button
-              className="btn-class btn-orange"
+              className="btn-class btn-orange btn-load"
               loading={createdClasses.loading}
               onClick={() => {
                 setPage((prev) => prev + 1);
