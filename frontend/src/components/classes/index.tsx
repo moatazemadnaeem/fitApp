@@ -134,11 +134,7 @@ const FitClasses: React.FC<{ type: PageType }> = ({ type }) => {
       </span>
     );
   }
-  return (
-    <h3 className="no-classes no-classes-error">
-      Something went wrong please try again later!
-    </h3>
-  );
+  return <></>;
 };
 
 export default FitClasses;
