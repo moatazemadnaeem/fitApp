@@ -78,7 +78,7 @@
 3. dashboard page (see all booked classes) 
 4. sign in page (user will sign in with his/her account) 
 5. sign up page (user will sign up with new account) 
-6. profile (user can see his/her name and password and sign out button and edit only name and password) 
+6. profile (user can see his/her name and password and sign out button) 
 
 ## Drop Down
 
