@@ -14,7 +14,7 @@ class FitController {
       const userId = req.currentUser?.id;
       const user = await User.findById(userId);
       if (!user) {
-        throw new NotFound("this user can not be found");
+        throw new NotFound("this user can not be found!");
       }
       await FitClasses.create({
         userId,
